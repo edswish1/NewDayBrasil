@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Webhook Discord - NewDay Brasil</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .webhook-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .webhook-url {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-all;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1e7e34;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste Webhook Discord</h1>
+        
+        <div class="webhook-info">
+            <h3>📋 Informações do Webhook</h3>
+            <p><strong>Canal:</strong> venas</p>
+            <p><strong>Servidor:</strong> NewDay Brasil</p>
+            <p><strong>URL:</strong></p>
+            <div class="webhook-url">https://discord.com/api/webhooks/1406054885912350841/Vm751UPyk4w4Ijh-hF7p27GPP0sSbPa4gDhL77klobxy_3rhjmX8arTRKrE2cUH29ncC</div>
+        </div>
+        
+        <div class="test-buttons">
+            <button class="btn btn-primary" onclick="testarNotificacaoInicial()">
+                🛒 Teste Notificação Inicial
+            </button>
+            <button class="btn btn-success" onclick="testarPagamentoAprovado()">
+                ✅ Teste Pagamento Aprovado
+            </button>
+            <button class="btn btn-warning" onclick="testarMensagemSimples()">
+                💬 Teste Mensagem Simples
+            </button>
+
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Enviando mensagem...</p>
+        </div>
+        
+        <div class="status" id="status"></div>
+    </div>
+
+    <script>
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1406054885912350841/Vm751UPyk4w4Ijh-hF7p27GPP0sSbPa4gDhL77klobxy_3rhjmX8arTRKrE2cUH29ncC';
+        
+        function showStatus(message, isSuccess = true) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${isSuccess ? 'success' : 'error'}`;
+            status.style.display = 'block';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        async function enviarMensagemDiscord(mensagem) {
+            try {
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: mensagem
+                    })
+                });
+                
+                if (response.status === 204) {
+                    return { success: true, message: 'Mensagem enviada com sucesso!' };
+                } else {
+                    const errorText = await response.text();
+                    return { success: false, message: `Erro ${response.status}: ${errorText}` };
+                }
+            } catch (error) {
+                return { success: false, message: `Erro de conexão: ${error.message}` };
+            }
+        }
+        
+        async function testarNotificacaoInicial() {
+            showLoading();
+            
+            const data = new Date();
+            const horario = data.toLocaleString('pt-BR');
+            
+            const mensagem = `🛒 **Nova Compra Iniciada!**\n\n` +
+                           `**Cliente:** PlayerTeste123\n` +
+                           `**Discord:** PlayerTeste#4567\n` +
+                           `**Steam ID:** 76561198123456789\n\n` +
+                           `**Itens do Carrinho:**\n` +
+                           `• Base VIP Media (x1) - R$ 60,00\n` +
+                           `• Roupa VIP Militar (x2) - R$ 15,00\n\n` +
+                           `**Total:** R$ 90,00\n` +
+                           `**Data/Hora:** ${horario}\n` +
+                           `**Status:** Aguardando Pagamento\n\n` +
+                           `*Esta é uma mensagem de teste do sistema*`;
+            
+            const resultado = await enviarMensagemDiscord(mensagem);
+            hideLoading();
+            showStatus(resultado.message, resultado.success);
+        }
+        
+        async function testarPagamentoAprovado() {
+            showLoading();
+            
+            const data = new Date();
+            const horario = data.toLocaleString('pt-BR');
+            
+            const mensagem = `✅ **Pagamento Aprovado!**\n\n` +
+                           `**Cliente:** PlayerTeste123\n` +
+                           `**Itens Comprados:**\n` +
+                           `• Base VIP Media (x1) - R$ 60,00\n` +
+                           `• Roupa VIP Militar (x2) - R$ 15,00\n\n` +
+                           `**Total:** R$ 90,00\n` +
+                           `**ID do Pagamento:** 123456789\n` +
+                           `**Método:** credit_card\n` +
+                           `**Referência:** site-dayz-PlayerTeste123-${Date.now()}\n` +
+                           `**Data/Hora:** ${horario}\n` +
+                           `**Status:** approved\n\n` +
+                           `*Esta é uma mensagem de teste do sistema*`;
+            
+            const resultado = await enviarMensagemDiscord(mensagem);
+            hideLoading();
+            showStatus(resultado.message, resultado.success);
+        }
+        
+        async function testarMensagemSimples() {
+            showLoading();
+            
+            const mensagem = `🧪 **Teste de Webhook Discord**\n\n` +
+                           `✅ Webhook configurado com sucesso!\n` +
+                           `📅 Data/Hora: ${new Date().toLocaleString('pt-BR')}\n` +
+                           `🎮 Sistema: NewDay Brasil\n\n` +
+                           `*Mensagem de teste para verificar a conectividade*`;
+            
+            const resultado = await enviarMensagemDiscord(mensagem);
+            hideLoading();
+            showStatus(resultado.message, resultado.success);
+        }
+        
+
+    </script>
+</body>
+</html>

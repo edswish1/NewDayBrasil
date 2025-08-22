@@ -4,7 +4,7 @@
 
 // Configurações
 $MERCADO_PAGO_ACCESS_TOKEN = 'APP_USR-2803705882545320-071017-b8550733051ba7e6a4478777bd3e4ed5-348490132';
-$DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1394224368925544488/gsb0kycXUQq4lcVAkYNn1roszQl4mrSwCvConHV4jpf3mHfjn0jYjEnBMhkPxpwOmkb8';
+$DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1406054885912350841/Vm751UPyk4w4Ijh-hF7p27GPP0sSbPa4gDhL77klobxy_3rhjmX8arTRKrE2cUH29ncC';
 
 // Log para debug
 function logMessage($message) {
@@ -12,6 +12,8 @@ function logMessage($message) {
     $timestamp = date('Y-m-d H:i:s');
     file_put_contents($logFile, "[$timestamp] $message\n", FILE_APPEND);
 }
+
+
 
 // Log inicial
 logMessage("=== WEBHOOK INICIADO ===");
@@ -95,6 +97,12 @@ if (isset($data['type']) && $data['type'] === 'payment') {
                     $total = $payment['transaction_amount'] ?? 0;
                     $items = $payment['additional_info']['items'] ?? [];
                     
+                    // Extrair nickname do cliente do external_reference
+                    $nicknameCliente = 'Não informado';
+                    if (preg_match('/site-dayz-(.+?)-\d+/', $externalReference, $matches)) {
+                        $nicknameCliente = $matches[1];
+                    }
+                    
                     // Preparar mensagem para o Discord
                     $produtosTexto = '';
                     if (!empty($items)) {
@@ -108,9 +116,11 @@ if (isset($data['type']) && $data['type'] === 'payment') {
                     $data = new DateTime();
                     $horario = $data->format('d/m/Y H:i:s');
                     
+                    // Mensagem de pagamento aprovado
                     $mensagem = [
                         'content' => "✅ **Pagamento Aprovado!**\n\n" .
-                                    $produtosTexto . "\n" .
+                                    "**Cliente:** $nicknameCliente\n" .
+                                    "**Itens Comprados:**\n" . $produtosTexto . "\n" .
                                     "**Total:** R$ " . number_format($total, 2, ',', '.') . "\n" .
                                     "**ID do Pagamento:** $paymentId\n" .
                                     "**Método:** $paymentMethod\n" .

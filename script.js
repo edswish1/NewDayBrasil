@@ -5,49 +5,19 @@ const MERCADO_PAGO_ACCESS_TOKEN = 'APP_USR-2803705882545320-071017-b8550733051ba
 // Dados dos produtos (simulando uma API)
 const produtos = [
     {
-        id: 1,
-        nome: "Base VIP Media",
-        categoria: "bases-vip",
-        categoriaNome: "Bases VIP",
-        preco: 60.00,
-        descricao: "Base vip vem incluso:10 storages de mil slots,5 portoes ja T2,Bandeira,1 Bica D'água,kit ferramentas+livro bbp...lembrando que a base vip o valor é mensal,caso queira pegar por mais de um mes entre em contato com a staff do servidor via ticket e irei fazer um preço melhor.",
-        imagem: "imagens/Basevipcla.png",
-        galeria: [
-            "imagens/Basevipcla.png",
-            "imagens/basevipcla2.png",
-        ],
-        videos: [
-            "Basevip.mp4"
-        ]
-    },
-    {
         id: 2,
         nome: "Roupa VIP Militar",
         categoria: "roupas-vip",
         categoriaNome: "Roupas VIP",
         preco: 15.00,
-        descricao: "Roupa vip voce nasce com a roupa,nela tbm vem inclusa 1 garrafa de agua,2 latas de bacon,1 bandagem,e uma faca de combate.(o pagamento da roupa é mensal,ou seja,valido por 1 mes apenas)",
-        imagem: "imagens/vip1.png",
+        descricao: "Voce irá nascer com a roupa,nela tambem vem incluso 1 cantil de agua,2 latas de bacon,1 bandagem,e uma faca de combate.(o pagamento da roupa é mensal,ou seja,valido por 1 mes apenas)",
+        imagem: "imagens/roupavip.png",
         galeria: [
-            "imagens/vip1.png",
-            "imagens/vip2.png",
-            "imagens/vip3.png"
+            "imagens/roupavip.png"
         ],
         videos: []
     },
-    {
-        id: 3,
-        nome: "Veículo Hummer H1",
-        categoria: "veiculos",
-        categoriaNome: "Veículos",
-        preco: 10.00,
-        descricao: "Veículo Hummer H1 totalmente equipado...veiculo nao possui seguro,entao se perder seu veiculo nao iremos dropar outro.",
-        imagem: "imagens/hamer.jpg",
-        galeria: [
-            "imagens/hamer.jpg"
-        ],
-        videos: []
-    },
+
     {
         id: 4,
         nome: "Kit Construção Avançado",
@@ -60,22 +30,6 @@ const produtos = [
             "imagens/construcao.jpg"
         ],
         videos: []
-    },
-    {
-        id: 5,
-        nome: "Base VIP Grande",
-        categoria: "bases-vip",
-        categoriaNome: "Bases VIP",
-        preco: 70.00,
-        descricao: "Base vip vem incluso:15 storages de mil slots,7 portoes ja T2,1 carro de brinde(nao tem seguro),Bandeira,1 Bica D'água,kit ferramentas+livro bbp ...lembrando que a base vip o valor é mensal,caso queira pegar por mais de um mes entre em contato com a staff do servidor via ticket e irei fazer um preço melhor..",
-        imagem: "imagens/basevipgrande.png",
-        galeria: [
-            "imagens/basevipgrande.png",
-            "imagens/basevipgrande2.png"
-        ],
-        videos: [
-            "basevipgrande.mp4"
-        ]
     },
     {
         id: 7,
@@ -108,7 +62,7 @@ const produtos = [
         nome: "Kit NBQ",
         categoria: "roupas-vip",
         categoriaNome: "Roupas VIP",
-        preco: 10.00,
+        preco: 15.00,
         descricao: "Kit completo NBQ com mascara e 5 filtros+3 comprimidos de carvao!.",
         imagem: "imagens/kitnbq.jpg",
         galeria: [
@@ -156,27 +110,68 @@ const produtos = [
         videos: []
     },
     {
-        id: 15,
-        nome: "Carro Mod Blindado com Seguro",
+        id: 3,
+        nome: "Veículo Hummer H1",
         categoria: "veiculos",
         categoriaNome: "Veículos",
-        preco: 60.00,
-        descricao: "Carro modificado blindado, seguro incluso! Em caso de perda, será reposto pela staff.",
-        imagem: "imagens/raptor.png",
+        preco: 10.00,
+        descricao: "Veículo Hummer H1 totalmente equipado...veiculo nao possui seguro,entao se perder seu veiculo nao iremos dropar outro.",
+        imagem: "imagens/hamer.jpg",
         galeria: [
-            "imagens/carrovip.jpg",
-            "imagens/raptor.png",
-            "imagens/carrovipvel.png"
+            "imagens/hamer.jpg"
         ],
         videos: []
     },
-
+    {
+        id: 15,
+        nome: "Veículo Hummer H1 com seguro",
+        categoria: "veiculos",
+        categoriaNome: "Veículos",
+        preco: 45.00,
+        descricao: "Veiculo vanila com seguro. Voce recebera: 1 veiculo vanila da sua escolha+carlock+seguro mensal. O seguro do veiculo voce tem direito: Pedir 3 seguros por semana. o Seguro é valido por apenas 1 mes",
+        imagem: "imagens/hamer.jpg",
+        galeria: [
+            "imagens/hamer.jpg"
+        ],
+        videos: []
+    },
+    {
+        id: 24,
+        nome: "Helicoptero com Seguro",
+        categoria: "veiculos",
+        categoriaNome: "Veículos",
+        preco: 60.00,
+        descricao: "Helicoptero Vip,otimo para se locomover pelo jogo com total conforto e rapidez. o Helicoptero vip voce tera varios modelos para escolher e alem de tudo ele vem com SEGURO. voce podera pedir o Heli denovo sempre que perder. Obs:o seguro devera ser acionado pelo player que comprou o veiculo e apenas via ticket!",
+        imagem: "imagens/Heli1.jpg",
+        galeria: [
+            "imagens/Heli1.jpg",
+            "imagens/heli2.jpg",
+            "imagens/heli3.jpg",
+            "imagens/heli4.jpg",
+            "imagens/heli6.jpg",
+            "imagens/heli7.jpg"
+        ],
+        videos: []
+    },
+    {
+        id: 25,
+        nome: "Helicoptero LittleBird SEM SEGURO",
+        categoria: "veiculos",
+        categoriaNome: "Veículos",
+        preco: 15.00,
+        descricao: "Helicoptero LittleBird sem seguro.\nO helicoptero LittleBird é bom para quem joga solo e nao quer ter muitos gastos com veiculos,ele nao possui seguro,se perder ele nao sera devolvido outro e nao adianta insistir!.",
+        imagem: "imagens/little.jpg",
+        galeria: [
+            "imagens/little.jpg"
+        ],
+        videos: []
+    },
     {
         id: 22,
         nome: "Trage ghillie completo",
         categoria: "roupas-vip",
         categoriaNome: "Roupas VIP",
-        preco: 15.00,
+        preco: 20.00,
         descricao: "Voce recebera 3 kits completos de ghillie na cor desejada.",
         imagem: "imagens/gg1.jpg",
         galeria: [
@@ -185,7 +180,6 @@ const produtos = [
         ],
         videos: []
     },
-
     {
         id: 18,
         nome: "Chapas de Metal",
@@ -213,6 +207,19 @@ const produtos = [
         videos: []
     },
     {
+        id: 23,
+        nome: "Codelock",
+        categoria: "construcao",
+        categoriaNome: "Construção",
+        preco: 10.00,
+        descricao: "Voce recebera x5 codelock no pacote.",
+        imagem: "imagens/codelock.jpg",
+        galeria: [
+            "imagens/codelock.jpg"
+        ],
+        videos: []
+    },
+    {
         id: 19,
         nome: "Base BBP 4x4",
         categoria: "bases-vip",
@@ -228,14 +235,15 @@ const produtos = [
     },
     {
         id: 21,
-        nome: "Seguro Base",
+        nome: "Base BBP 3x3",
         categoria: "bases-vip",
         categoriaNome: "Bases VIP",
-        preco: 40.00,
-        descricao: "O seguro base caso a pessoa sofra um raid e perca tudo seu loot, o adm ira dropar para ela: Kit com 15 armas de rush de seu gosto completas, kit com 15 snipers do seu gosto, 20 Baus de mil slots, 2 carros (sem seguro), Todas as portas arrumadas e com codelock novamente.",
-        imagem: "imagens/seguro.jpg",
+        preco: 70.00,
+        descricao: "Base 3x3 feita de BBP,vem incluso os itens: Base BBP 3x3 completa com 5 storages de mil slots, 4 portões T1, bandeira,carro de brinde sem seguro.",
+        imagem: "imagens/basebbp1.jpg",
         galeria: [
-            "imagens/seguro.jpg"
+            "imagens/basebbp1.jpg",
+            "imagens/basebbp2.jpg"
         ],
         videos: []
     }
@@ -248,7 +256,6 @@ let produtoAtual = null;
 
 // Elementos do DOM
 const produtosGrid = document.getElementById('produtos-grid');
-const categoriaBtns = document.querySelectorAll('.categoria-btn');
 const carrinhoItems = document.getElementById('carrinho-items');
 const carrinhoTotal = document.getElementById('carrinho-total');
 const cartCount = document.querySelector('.cart-count');
@@ -256,16 +263,10 @@ const produtoModal = document.getElementById('produto-modal');
 const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
 
 // URL do webhook do Discord
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1394224368925544488/gsb0kycXUQq4lcVAkYNn1roszQl4mrSwCvConHV4jpf3mHfjn0jYjEnBMhkPxpwOmkb8';
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1406054885912350841/Vm751UPyk4w4Ijh-hF7p27GPP0sSbPa4gDhL77klobxy_3rhjmX8arTRKrE2cUH29ncC';
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
-    // Marcar a primeira categoria como ativa
-    const primeiraCategoria = document.querySelector('.categoria-btn');
-    if (primeiraCategoria) {
-        primeiraCategoria.classList.add('active');
-    }
-    
     carregarProdutos();
     inicializarEventos();
     atualizarCarrinho();
@@ -407,9 +408,14 @@ function atualizarCarrinho() {
     
     carrinhoItems.innerHTML = '';
     
+    // Mostrar/ocultar campos de informações do cliente
+    const clienteInfo = document.getElementById('cliente-info');
     if (carrinho.length === 0) {
         carrinhoItems.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Carrinho vazio</p>';
+        if (clienteInfo) clienteInfo.style.display = 'none';
         return;
+    } else {
+        if (clienteInfo) clienteInfo.style.display = 'block';
     }
     
     carrinho.forEach(item => {
@@ -457,51 +463,20 @@ function mostrarNotificacao(mensagem) {
 
 // Inicializar eventos
 function inicializarEventos() {
-    // Filtros de categoria
-    categoriaBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            categoriaBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            categoriaAtual = btn.dataset.categoria;
-            
-            // Atualizar botões do header
-            const categoriaNavBtns = document.querySelectorAll('.categoria-nav');
-            categoriaNavBtns.forEach(b => b.classList.remove('active'));
-            const headerBtn = document.querySelector(`.categoria-nav[data-categoria="${categoriaAtual}"]`);
-            if (headerBtn) {
-                headerBtn.classList.add('active');
-            }
-            
-            carregarProdutos();
-        });
-    });
-    
-    // Botões de categoria no header
-    const categoriaNavBtns = document.querySelectorAll('.categoria-nav');
-    categoriaNavBtns.forEach(btn => {
+    // Botões de categoria na navegação lateral
+    const categoriaLateralBtns = document.querySelectorAll('.categoria-lateral');
+    categoriaLateralBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             categoriaAtual = btn.dataset.categoria;
             
-            // Atualizar botões ativos
-            categoriaBtns.forEach(b => b.classList.remove('active'));
-            const categoriaBtn = document.querySelector(`[data-categoria="${categoriaAtual}"]`);
-            if (categoriaBtn) {
-                categoriaBtn.classList.add('active');
-            }
-            
-            // Atualizar botões do header
-            categoriaNavBtns.forEach(b => b.classList.remove('active'));
+            // Atualizar botões da navegação lateral
+            categoriaLateralBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
             carregarProdutos();
-            
-            // Scroll para a seção da loja
-            document.getElementById('loja').scrollIntoView({ behavior: 'smooth' });
         });
     });
-    
-
     
     // Modal
     document.querySelector('.close').addEventListener('click', fecharModal);
@@ -511,6 +486,17 @@ function inicializarEventos() {
             fecharModal();
         }
     });
+    
+    // Botão Adicionar ao Carrinho do Modal
+    const btnAdicionarModal = document.getElementById('btn-adicionar-modal');
+    if (btnAdicionarModal) {
+        btnAdicionarModal.addEventListener('click', () => {
+            if (produtoAtual) {
+                adicionarAoCarrinho(produtoAtual.id);
+                fecharModal();
+            }
+        });
+    }
     
     // Finalizar compra
     btnFinalizarCompra.addEventListener('click', finalizarCompra);
@@ -523,7 +509,34 @@ async function finalizarCompra() {
         return;
     }
 
+    // Capturar informações do cliente
+    const nicknameJogo = document.getElementById('nickname-jogo').value.trim();
+    const discordUsername = document.getElementById('discord-username').value.trim();
+    const steamId = document.getElementById('steam-id').value.trim();
+    
+    // Validar campos obrigatórios
+    if (!nicknameJogo) {
+        alert('Por favor, informe seu nickname no jogo!');
+        document.getElementById('nickname-jogo').focus();
+        return;
+    }
+    
+    if (!discordUsername) {
+        alert('Por favor, informe seu nome no Discord!');
+        document.getElementById('discord-username').focus();
+        return;
+    }
+    
+    if (!steamId) {
+        alert('Por favor, informe seu Steam ID!');
+        document.getElementById('steam-id').focus();
+        return;
+    }
+
     try {
+        // Enviar notificação inicial para o Discord com informações do cliente
+        await enviarNotificacaoInicialDiscord(nicknameJogo, discordUsername, steamId);
+        
         // Criar preferência no Mercado Pago usando a API do Mercado Pago
         const preference = {
             items: carrinho.map(item => ({
@@ -538,7 +551,7 @@ async function finalizarCompra() {
                 pending: window.location.origin + window.location.pathname + '?status=pending'
             },
             auto_return: "approved",
-            external_reference: "site-dayz-" + Date.now(),
+            external_reference: `site-dayz-${nicknameJogo}-${Date.now()}`,
             payment_methods: {
                 excluded_payment_types: [],
                 installments: 1
@@ -588,7 +601,7 @@ async function finalizarCompra() {
                     pending: window.location.origin + window.location.pathname + '?status=pending'
                 },
                 auto_return: "approved",
-                external_reference: "site-dayz-" + Date.now(),
+                external_reference: `site-dayz-${nicknameJogo}-${Date.now()}`,
                 payment_methods: {
                     excluded_payment_types: [],
                     installments: 1
@@ -710,8 +723,8 @@ async function verificarStatusPagamento() {
     }
 }
 
-// Função para enviar notificação do Discord apenas para pagamentos aprovados
-async function enviarNotificacaoDiscord(payment) {
+// Função para enviar notificação inicial para o Discord quando a compra for iniciada
+async function enviarNotificacaoInicialDiscord(nicknameJogo, discordUsername, steamId) {
     try {
         const produtosTexto = carrinho.map(item => `• ${item.nome} (x${item.quantidade}) - R$ ${item.preco.toFixed(2)}`).join('\n');
         const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
@@ -719,7 +732,49 @@ async function enviarNotificacaoDiscord(payment) {
         const horario = data.toLocaleString('pt-BR');
         
         const mensagem = {
-            content: `✅ **Pagamento Aprovado!**\n\n${produtosTexto}\n\n**Total:** R$ ${total.toFixed(2)}\n**ID do Pagamento:** ${payment.id}\n**Data/Hora:** ${horario}\n**Status:** ${payment.status}`
+            content: `🛒 **Nova Compra Iniciada!**\n\n` +
+                     `**Cliente:** ${nicknameJogo}\n` +
+                     `**Discord:** ${discordUsername}\n` +
+                     `**Steam ID:** ${steamId}\n\n` +
+                     `**Itens do Carrinho:**\n${produtosTexto}\n\n` +
+                     `**Total:** R$ ${total.toFixed(2)}\n` +
+                     `**Data/Hora:** ${horario}\n` +
+                     `**Status:** Aguardando Pagamento`
+        };
+        
+        await fetch(DISCORD_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(mensagem)
+        });
+        
+        console.log('Notificação inicial enviada para o Discord com sucesso');
+    } catch (e) {
+        console.warn('Não foi possível enviar notificação inicial para o Discord:', e);
+    }
+}
+
+// Função para enviar notificação do Discord quando o pagamento for aprovado
+async function enviarNotificacaoDiscord(payment) {
+    try {
+        const produtosTexto = carrinho.map(item => `• ${item.nome} (x${item.quantidade}) - R$ ${item.preco.toFixed(2)}`).join('\n');
+        const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+        const data = new Date();
+        const horario = data.toLocaleString('pt-BR');
+        
+        // Extrair nickname do external_reference se disponível
+        const externalRef = payment.external_reference || '';
+        const nicknameMatch = externalRef.match(/site-dayz-(.+?)-\d+/);
+        const nicknameJogo = nicknameMatch ? nicknameMatch[1] : 'Não informado';
+        
+        const mensagem = {
+            content: `✅ **Pagamento Aprovado!**\n\n` +
+                     `**Cliente:** ${nicknameJogo}\n` +
+                     `**Itens Comprados:**\n${produtosTexto}\n\n` +
+                     `**Total:** R$ ${total.toFixed(2)}\n` +
+                     `**ID do Pagamento:** ${payment.id}\n` +
+                     `**Data/Hora:** ${horario}\n` +
+                     `**Status:** ${payment.status}`
         };
         
         await fetch(DISCORD_WEBHOOK_URL, {
@@ -732,4 +787,6 @@ async function enviarNotificacaoDiscord(payment) {
     } catch (e) {
         console.warn('Não foi possível notificar o Discord:', e);
     }
-} 
+}
+
+ 

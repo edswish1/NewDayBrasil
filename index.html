@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Vídeo de Fundo -->
+    <video autoplay muted loop id="bg-video">
+        <source src="imagens/ndbvideo.mp4" type="video/mp4">
+    </video>
+    
     <!-- Header -->
     <header class="header">
         <nav class="nav">
@@ -29,18 +34,6 @@
                     <span class="letra-animada">i</span>
                     <span class="letra-animada">l</span>
                 </h1>
-                <a href="https://discord.gg/JY54bPQ7Xr" target="_blank" class="discord-btn" style="display: inline-flex; align-items: center; gap: 0.5em; background: #5865F2; color: #fff; padding: 8px 18px; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 1rem; box-shadow: 0 2px 8px rgba(88,101,242,0.13); transition: background 0.2s, box-shadow 0.2s; margin-left: 18px;">
-                    <i class="fab fa-discord" style="font-size: 1.2em;"></i> Discord
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="#home" class="nav-link categoria-nav">Início</a>
-                <div class="categorias-nav">
-                    <a href="#loja" class="nav-link categoria-nav" data-categoria="bases-vip">Bases VIP</a>
-                    <a href="#loja" class="nav-link categoria-nav" data-categoria="roupas-vip">Roupas VIP</a>
-                    <a href="#loja" class="nav-link categoria-nav" data-categoria="veiculos">Veículos</a>
-                    <a href="#loja" class="nav-link categoria-nav" data-categoria="construcao">Construção</a>
-                </div>
             </div>
         </nav>
     </header>
@@ -48,27 +41,7 @@
     <!-- Loja Section -->
     <section id="loja" class="loja">
         <div class="container">
-            <h2 style="
-  font-family: 'Lucida Sans', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans Regular', Arial, sans-serif;
-  font-size: 2.4rem;
-  text-align: center;
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
-  background: none;
-  color: transparent;
-  text-shadow: 0 2px 12px #000, 0 1px 0 #FFD700;
-  border-radius: 12px;
-  padding: 0.6em 0;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  background-image: linear-gradient(90deg, #00C853, #FFD600);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: brilhoTitulo 2.5s linear infinite alternate;
-">
-  Loja NewDay Brasil
-</h2>
+
             
             <!-- Layout da Loja com Carrinho -->
             <div class="loja-layout">
@@ -92,6 +65,35 @@
                             <span>Total:</span>
                             <span id="carrinho-total">R$ 0,00</span>
                         </div>
+                        
+                        <!-- Campos de informações do cliente -->
+                        <div class="cliente-info" id="cliente-info" style="display: none; margin-bottom: 1rem; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid #FFD700;">
+                            <h4 style="color: #FFD700; margin-bottom: 0.8rem; font-size: 1rem;">
+                                <i class="fas fa-user"></i> Informações para Entrega
+                            </h4>
+                            <div style="margin-bottom: 0.8rem;">
+                                <label for="nickname-jogo" style="display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.3rem;">
+                                    <i class="fas fa-gamepad"></i> Seu nickname no jogo:
+                                </label>
+                                <input type="text" id="nickname-jogo" placeholder="Digite seu nickname no jogo" 
+                                       style="width: 100%; padding: 0.5rem; border: 1px solid #FFD700; border-radius: 4px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem;">
+                            </div>
+                            <div style="margin-bottom: 0.8rem;">
+                                <label for="discord-username" style="display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.3rem;">
+                                    <i class="fab fa-discord"></i> Seu nome no Discord:
+                                </label>
+                                <input type="text" id="discord-username" placeholder="Ex: Usuario#1234" 
+                                       style="width: 100%; padding: 0.5rem; border: 1px solid #FFD700; border-radius: 4px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem;">
+                            </div>
+                            <div style="margin-bottom: 0.8rem;">
+                                <label for="steam-id" style="display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.3rem;">
+                                    <i class="fab fa-steam"></i> Seu Steam ID:
+                                </label>
+                                <input type="text" id="steam-id" placeholder="Ex: 76561198123456789" 
+                                       style="width: 100%; padding: 0.5rem; border: 1px solid #FFD700; border-radius: 4px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem;">
+                            </div>
+                        </div>
+                        
                         <button class="btn-finalizar" id="btn-finalizar-compra">
                             <i class="fas fa-credit-card"></i> Finalizar Compra
                         </button>
@@ -123,6 +125,16 @@
                                 <strong>Seu nickname no jogo</strong>
                             </li>
                         </ul>
+                    </div>
+                </div>
+                <!-- Navegação Lateral -->
+                <div class="nav-lateral">
+                    <h3><i class="fas fa-th-large"></i> Categorias</h3>
+                    <div class="categorias-lateral">
+                        <a href="#loja" class="categoria-lateral active" data-categoria="bases-vip">Bases VIP</a>
+                        <a href="#loja" class="categoria-lateral" data-categoria="roupas-vip">Roupas VIP</a>
+                        <a href="#loja" class="categoria-lateral" data-categoria="veiculos">Veículos</a>
+                        <a href="#loja" class="categoria-lateral" data-categoria="construcao">Construção</a>
                     </div>
                 </div>
         </div>
@@ -187,11 +199,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-            <p style="margin: 0;">&copy; 2024 NewDay Brasil. Todos os direitos reservados.</p>
-            <a href="https://discord.gg/JY54bPQ7Xr" target="_blank" class="discord-btn" style="display: flex; align-items: center; gap: 0.5em; background: #5865F2; color: #fff; padding: 10px 22px; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(88,101,242,0.13); transition: background 0.2s, box-shadow 0.2s;">
-                <i class="fab fa-discord" style="font-size: 1.4em;"></i> Entrar no Discord
-            </a>
+        <div class="container">
+            <p style="margin: 0; text-align: center;">&copy; 2024 NewDay Brasil. Todos os direitos reservados.</p>
         </div>
     </footer>
 
