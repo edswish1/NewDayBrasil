@@ -1142,38 +1142,7 @@ body::before {
         height: 45px;
     }
     
-    /* Categorias Nav */
-    .categorias-nav {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        overflow-x: auto;
-        padding: 0.5rem;
-        background: rgba(0,0,0,0.7);
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        scrollbar-width: thin;
-        scrollbar-color: #4CAF50 #222;
-    }
-    
-    .categorias-nav::-webkit-scrollbar {
-        height: 4px;
-    }
-    
-    .categorias-nav::-webkit-scrollbar-thumb {
-        background: #4CAF50;
-        border-radius: 2px;
-    }
-    
-    .categoria-nav {
-        font-size: 0.9rem;
-        padding: 10px 15px;
-        border-radius: 20px;
-        min-width: 100px;
-        text-align: center;
-        flex: 0 0 auto;
-        white-space: nowrap;
-    }
+
 }
 
 /* Responsividade para vídeo de fundo */
@@ -1620,21 +1589,10 @@ body::before {
         touch-action: manipulation;
     }
     
-    .categoria-nav {
-        min-height: 44px;
-        touch-action: manipulation;
-    }
-    
     .quantidade-btn {
         min-width: 44px;
         min-height: 44px;
         touch-action: manipulation;
-    }
-    
-    /* Melhorar scroll */
-    .categorias-nav {
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
     }
     
     /* Melhorar modal */
@@ -1676,8 +1634,7 @@ body::before {
     
     .produto-card,
     .btn-adicionar,
-    .btn-info,
-    .categoria-nav {
+    .btn-info {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }

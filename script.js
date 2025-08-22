@@ -907,15 +907,7 @@ document.addEventListener('DOMContentLoaded', function() {
             categoriasMobile.forEach(cat => cat.classList.remove('active'));
             this.classList.add('active');
             
-            // Sincronizar com categorias desktop
-            const categoriasDesktop = document.querySelectorAll('.categoria-nav');
-            categoriasDesktop.forEach(cat => {
-                if (cat.getAttribute('data-categoria') === categoriaSelecionada) {
-                    cat.classList.add('active');
-                } else {
-                    cat.classList.remove('active');
-                }
-            });
+
             
             // Filtrar produtos
             filtrarProdutos(categoriaSelecionada);
@@ -925,31 +917,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Categorias desktop (sincronizar com mobile)
-    const categoriasDesktop = document.querySelectorAll('.categoria-nav');
-    categoriasDesktop.forEach(categoria => {
-        categoria.addEventListener('click', function(e) {
-            e.preventDefault();
-            const categoriaSelecionada = this.getAttribute('data-categoria');
-            
-            // Atualizar categoria ativa em todos os lugares
-            categoriasDesktop.forEach(cat => cat.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Sincronizar com categorias mobile
-            const categoriasMobile = document.querySelectorAll('.categoria-mobile');
-            categoriasMobile.forEach(cat => {
-                if (cat.getAttribute('data-categoria') === categoriaSelecionada) {
-                    cat.classList.add('active');
-                } else {
-                    cat.classList.remove('active');
-                }
-            });
-            
-            // Filtrar produtos
-            filtrarProdutos(categoriaSelecionada);
-        });
-    });
+
     
     // Botão finalizar compra mobile
     const btnFinalizarMobile = document.getElementById('btn-finalizar-compra-mobile');
