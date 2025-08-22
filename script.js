@@ -789,4 +789,211 @@ async function enviarNotificacaoDiscord(payment) {
     }
 }
 
- 
+// ===== FUNCIONALIDADES MOBILE =====
+
+// Função para alternar menu mobile
+function toggleMenuMobile() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuMobile = document.getElementById('menu-mobile');
+    
+    menuToggle.classList.toggle('active');
+    menuMobile.classList.toggle('active');
+    
+    // Prevenir scroll do body quando menu estiver aberto
+    if (menuMobile.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+// Função para fechar menu mobile
+function closeMenuMobile() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuMobile = document.getElementById('menu-mobile');
+    
+    menuToggle.classList.remove('active');
+    menuMobile.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Função para atualizar carrinho mobile
+function atualizarCarrinhoMobile() {
+    const carrinhoItemsMobile = document.getElementById('carrinho-items-mobile');
+    const carrinhoTotalMobile = document.getElementById('carrinho-total-mobile');
+    const cartBadge = document.querySelector('.fab-carrinho .cart-badge');
+    
+    if (carrinhoItemsMobile && carrinhoTotalMobile) {
+        carrinhoItemsMobile.innerHTML = '';
+        
+        if (carrinho.length === 0) {
+            carrinhoItemsMobile.innerHTML = '<p style="color: #fff; text-align: center; padding: 1rem;">Carrinho vazio</p>';
+            carrinhoTotalMobile.textContent = 'R$ 0,00';
+            if (cartBadge) cartBadge.textContent = '0';
+            return;
+        }
+        
+        carrinho.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'carrinho-item';
+            itemElement.innerHTML = `
+                <img src="${item.imagem}" alt="${item.nome}">
+                <div class="carrinho-item-info">
+                    <div class="carrinho-item-titulo">${item.nome}</div>
+                    <div class="carrinho-item-preco">R$ ${item.preco.toFixed(2)}</div>
+                    <div class="carrinho-item-quantidade">
+                        <button class="quantidade-btn" onclick="alterarQuantidade(${index}, -1)">-</button>
+                        <span class="quantidade">${item.quantidade}</span>
+                        <button class="quantidade-btn" onclick="alterarQuantidade(${index}, 1)">+</button>
+                    </div>
+                </div>
+                <button class="remover-item" onclick="removerDoCarrinho(${index})">×</button>
+            `;
+            carrinhoItemsMobile.appendChild(itemElement);
+        });
+        
+        const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+        carrinhoTotalMobile.textContent = `R$ ${total.toFixed(2)}`;
+        
+        if (cartBadge) {
+            const totalItems = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
+            cartBadge.textContent = totalItems;
+        }
+    }
+}
+
+// Função para abrir menu mobile ao clicar no FAB
+function abrirMenuMobile() {
+    const menuMobile = document.getElementById('menu-mobile');
+    const menuToggle = document.getElementById('menu-toggle');
+    
+    menuMobile.classList.add('active');
+    menuToggle.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Event listeners para mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenuMobile);
+    }
+    
+    // FAB carrinho
+    const fabCarrinho = document.getElementById('fab-carrinho');
+    if (fabCarrinho) {
+        fabCarrinho.addEventListener('click', abrirMenuMobile);
+    }
+    
+    // Fechar menu ao clicar fora
+    const menuMobile = document.getElementById('menu-mobile');
+    if (menuMobile) {
+        menuMobile.addEventListener('click', function(e) {
+            if (e.target === menuMobile) {
+                closeMenuMobile();
+            }
+        });
+    }
+    
+    // Categorias mobile
+    const categoriasMobile = document.querySelectorAll('.categoria-mobile');
+    categoriasMobile.forEach(categoria => {
+        categoria.addEventListener('click', function(e) {
+            e.preventDefault();
+            const categoriaSelecionada = this.getAttribute('data-categoria');
+            
+            // Atualizar categoria ativa em todos os lugares
+            categoriasMobile.forEach(cat => cat.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Sincronizar com categorias desktop
+            const categoriasDesktop = document.querySelectorAll('.categoria-nav');
+            categoriasDesktop.forEach(cat => {
+                if (cat.getAttribute('data-categoria') === categoriaSelecionada) {
+                    cat.classList.add('active');
+                } else {
+                    cat.classList.remove('active');
+                }
+            });
+            
+            // Filtrar produtos
+            filtrarProdutos(categoriaSelecionada);
+            
+            // Fechar menu mobile
+            closeMenuMobile();
+        });
+    });
+    
+    // Categorias desktop (sincronizar com mobile)
+    const categoriasDesktop = document.querySelectorAll('.categoria-nav');
+    categoriasDesktop.forEach(categoria => {
+        categoria.addEventListener('click', function(e) {
+            e.preventDefault();
+            const categoriaSelecionada = this.getAttribute('data-categoria');
+            
+            // Atualizar categoria ativa em todos os lugares
+            categoriasDesktop.forEach(cat => cat.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Sincronizar com categorias mobile
+            const categoriasMobile = document.querySelectorAll('.categoria-mobile');
+            categoriasMobile.forEach(cat => {
+                if (cat.getAttribute('data-categoria') === categoriaSelecionada) {
+                    cat.classList.add('active');
+                } else {
+                    cat.classList.remove('active');
+                }
+            });
+            
+            // Filtrar produtos
+            filtrarProdutos(categoriaSelecionada);
+        });
+    });
+    
+    // Botão finalizar compra mobile
+    const btnFinalizarMobile = document.getElementById('btn-finalizar-compra-mobile');
+    if (btnFinalizarMobile) {
+        btnFinalizarMobile.addEventListener('click', function() {
+            if (carrinho.length === 0) {
+                mostrarNotificacao('❌ Carrinho vazio!');
+                return;
+            }
+            
+            const clienteInfoMobile = document.getElementById('cliente-info-mobile');
+            if (clienteInfoMobile.style.display === 'none') {
+                clienteInfoMobile.style.display = 'block';
+                this.innerHTML = '<i class="fas fa-credit-card"></i> Confirmar Compra';
+            } else {
+                finalizarCompraMobile();
+            }
+        });
+    }
+});
+
+// Função para finalizar compra mobile
+function finalizarCompraMobile() {
+    const nicknameJogo = document.getElementById('nickname-jogo-mobile').value.trim();
+    const discordUsername = document.getElementById('discord-username-mobile').value.trim();
+    const steamId = document.getElementById('steam-id-mobile').value.trim();
+    
+    if (!nicknameJogo || !discordUsername || !steamId) {
+        mostrarNotificacao('❌ Preencha todas as informações do cliente!');
+        return;
+    }
+    
+    // Usar a mesma lógica de finalização do desktop
+    finalizarCompra();
+    
+    // Fechar menu mobile após finalizar
+    setTimeout(() => {
+        closeMenuMobile();
+    }, 1000);
+}
+
+// Modificar a função atualizarCarrinho para incluir mobile
+const originalAtualizarCarrinho = atualizarCarrinho;
+atualizarCarrinho = function() {
+    originalAtualizarCarrinho();
+    atualizarCarrinhoMobile();
+};

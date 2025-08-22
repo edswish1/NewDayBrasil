@@ -35,8 +35,78 @@
                     <span class="letra-animada">l</span>
                 </h1>
             </div>
+            <!-- Menu Hambúrguer para Mobile -->
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
+
+    <!-- Menu Mobile -->
+    <div class="menu-mobile" id="menu-mobile">
+        <div class="categorias-mobile">
+            <a href="#loja" class="categoria-mobile active" data-categoria="bases-vip">Bases VIP</a>
+            <a href="#loja" class="categoria-mobile" data-categoria="roupas-vip">Roupas VIP</a>
+            <a href="#loja" class="categoria-mobile" data-categoria="veiculos">Veículos</a>
+            <a href="#loja" class="categoria-mobile" data-categoria="construcao">Construção</a>
+        </div>
+        
+        <div class="carrinho-mobile">
+            <div class="carrinho-header">
+                <h3><i class="fas fa-shopping-cart"></i> Carrinho</h3>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="carrinho-items" id="carrinho-items-mobile">
+                <!-- Items do carrinho serão carregados dinamicamente -->
+            </div>
+            <div class="carrinho-footer">
+                <div class="total">
+                    <span>Total:</span>
+                    <span id="carrinho-total-mobile">R$ 0,00</span>
+                </div>
+                
+                <!-- Campos de informações do cliente -->
+                <div class="cliente-info" id="cliente-info-mobile" style="display: none; margin-bottom: 1rem; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid #FFD700;">
+                    <h4 style="color: #FFD700; margin-bottom: 0.8rem; font-size: 1rem;">
+                        <i class="fas fa-user"></i> Informações para Entrega
+                    </h4>
+                    <div style="margin-bottom: 0.8rem;">
+                        <label for="nickname-jogo-mobile" style="display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.3rem;">
+                            <i class="fas fa-gamepad"></i> Seu nickname no jogo:
+                        </label>
+                        <input type="text" id="nickname-jogo-mobile" placeholder="Digite seu nickname no jogo" 
+                               style="width: 100%; padding: 0.5rem; border: 1px solid #FFD700; border-radius: 4px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem;">
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <label for="discord-username-mobile" style="display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.3rem;">
+                            <i class="fab fa-discord"></i> Seu nome no Discord:
+                        </label>
+                        <input type="text" id="discord-username-mobile" placeholder="Ex: Usuario#1234" 
+                               style="width: 100%; padding: 0.5rem; border: 1px solid #FFD700; border-radius: 4px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem;">
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <label for="steam-id-mobile" style="display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.3rem;">
+                            <i class="fab fa-steam"></i> Seu Steam ID:
+                        </label>
+                        <input type="text" id="steam-id-mobile" placeholder="Ex: 76561198123456789" 
+                               style="width: 100%; padding: 0.5rem; border: 1px solid #FFD700; border-radius: 4px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem;">
+                    </div>
+                </div>
+                
+                <button class="btn-finalizar" id="btn-finalizar-compra-mobile">
+                    <i class="fas fa-credit-card"></i> Finalizar Compra
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão FAB para Carrinho Mobile -->
+    <button class="fab-carrinho" id="fab-carrinho">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">0</span>
+    </button>
 
     <!-- Loja Section -->
     <section id="loja" class="loja">
@@ -47,6 +117,14 @@
             <div class="loja-layout">
                 <!-- Grid de Produtos -->
                 <div class="produtos-container">
+                    <!-- Categorias horizontais para mobile -->
+                    <div class="categorias-nav" id="categorias-nav">
+                        <a href="#loja" class="categoria-nav active" data-categoria="bases-vip">Bases VIP</a>
+                        <a href="#loja" class="categoria-nav" data-categoria="roupas-vip">Roupas VIP</a>
+                        <a href="#loja" class="categoria-nav" data-categoria="veiculos">Veículos</a>
+                        <a href="#loja" class="categoria-nav" data-categoria="construcao">Construção</a>
+                    </div>
+                    
                     <div class="produtos-grid" id="produtos-grid">
                         <!-- Produtos serão carregados dinamicamente -->
                     </div>
