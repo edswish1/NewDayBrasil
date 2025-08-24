@@ -11,9 +11,11 @@ const produtos = [
         categoriaNome: "Roupas VIP",
         preco: 15.00,
         descricao: "Voce irá nascer com a roupa,nela tambem vem incluso 1 cantil de agua,2 latas de bacon,1 bandagem,e uma faca de combate.(o pagamento da roupa é mensal,ou seja,valido por 1 mes apenas)",
-        imagem: "imagens/roupavip.png",
+        imagem: "imagens/vip1.png",
         galeria: [
-            "imagens/roupavip.png"
+            "imagens/vip1.png",
+            "imagens/vip2.png",
+            "imagens/vip3.png"
         ],
         videos: []
     },
